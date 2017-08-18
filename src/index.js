@@ -1,41 +1,68 @@
 // TODO:
 /* eslint-disable require-jsdoc */
+import Logger from './shared/logger';
+import {
+  getBrowserName,
+  isChromeExtensionInstalled,
+} from './shared/util';
 
 class ScreenShare {
   constructor(options = {debug: false}) {
-    this._debug = 'debug' in options ? Boolean(options.debug) : false;
+    const isDebugMode = 'debug' in options ? Boolean(options.debug) : false;
+
+    this._logger = new Logger(isDebugMode);
   }
 
-  startScreenShare() {
-    console.error('TODO: implement');
-    // public startScreenShare(param:gUMParamObject,success:{(stream:MediaStream)}, error:{(error:Error)}, onEndedEvent = null):void{
-    //
-    //   if(!!navigator.mozGetUserMedia) {
-    //
-    //     // for FF
-    //     var _paramFirefox: getUserMediaFirefoxOptionsObject = {
-    //       video: {
-    //         mozMediaSource: 'window',
-    //         mediaSource: 'window'
-    //       },
-    //       audio: false
-    //     };
-    //
-    //     if(isFinite(param.Width)) _paramFirefox.video.width = {min: param.Width,max: param.Width};
-    //     if(isFinite(param.Height)) _paramFirefox.video.height = {min: param.Height,max: param.Height};
-    //     if(isFinite(param.FrameRate)) _paramFirefox.video.frameRate = {min: param.FrameRate,max: param.FrameRate};
-    //
-    //     this.logger("Parameter of getUserMedia : " + JSON.stringify(_paramFirefox));
-    //
-    //     navigator.mozGetUserMedia(_paramFirefox, (stream)=>{
-    //       success(stream);
-    //     }, (err)=>{
-    //       this.logger("Error message of getUserMedia : " + JSON.stringify(err));
-    //       error(err);
-    //     });
-    //
-    //   }else if(!!navigator.webkitGetUserMedia){
-    //
+  startScreenShare(
+    params = {},
+    successCallback = () => {},
+    errorCallback = () => {},
+    onEndedCallback = () => {}
+  ) {
+    switch (getBrowserName()) {
+      case 'firefox':
+        this._handleFirefox(params, successCallback, errorCallback);
+        break;
+      case 'chrome':
+        this._handleChrome(params, successCallback, errorCallback, onEndedCallback);
+        break;
+      default:
+        this._logger.log('This browser does not support screen share.');
+        break;
+    }
+  }
+
+  _handleFirefox(params, successCallback, errorCallback) {
+    const gUMOptions = {
+      video: {
+        mediaSource: 'window',
+      },
+      audio: false,
+    };
+
+    if (isFinite(param.Width)) {
+      gUMOptions.video.width = {min: param.Width, max: param.Width};
+    }
+    if (isFinite(param.Height)) {
+      gUMOptions.video.height = {min: param.Height, max: param.Height};
+    }
+    if (isFinite(param.FrameRate)) {
+      gUMOptions.video.frameRate = {min: param.FrameRate, max: param.FrameRate};
+    }
+
+    this._logger.log('Parameter of getUserMedia: ', gUMOptions);
+
+    navigator.mediaDevices.getUserMedia(gUMOptions)
+      .then(stream => successCallback(stream))
+      .catch(err => {
+        this._logger.log('Error message of getUserMedia: ', err);
+        return errorCallback(err);
+      });
+  }
+
+  _handleChrome() {
+    if (isChromeExtensionInstalled() === false) {
+    }
     //     // for Chrome
     //     var _paramChrome: getUserMediaChromeMandatoryObject = {
     //       mandatory: {
@@ -86,8 +113,6 @@ class ScreenShare {
     //     });
     //
     //     window.postMessage({type:"getStreamId"},"*");
-    //   }
-    // }
   }
 
   stopScreenShare() {
@@ -95,7 +120,7 @@ class ScreenShare {
   }
 
   isEnabledExtension() {
-    if ('ScreenShareExtentionExists' in window) {
+    if (isChromeExtensionInstalled()) {
       this.logger('ScreenShare Extension available');
       return true;
     }
@@ -103,12 +128,8 @@ class ScreenShare {
     this.logger('ScreenShare Extension not available');
     return false;
   }
-
-  _log(message) {
-    if (this._debug) {
-      console.log('SkyWay-ScreenShare: ', message);
-    }
-  }
 }
 
 export default ScreenShare;
+// for interop exports
+module.exports = ScreenShare;

@@ -1,4 +1,11 @@
 # ScreenShare
+## TODO
+- impl
+- cp chrome-extension
+- build extension
+- fix examples
+- comment w/ lint
+- README / LICENSE
 
 ## Setting up
 

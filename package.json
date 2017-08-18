@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "ScreenShare library for ECL WebRTC",
   "main": "dist/screenshare.js",
+  "module": "src/index.js",
   "scripts": {
-    "lint": "eslint src",
-    "dev": "",
-    "build": ""
+    "lint": "eslint ./examples ./src ./tests",
+    "build:lib": "NODE_ENV=production webpack",
+    "dev:lib": "webpack -w"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,8 @@
     "eslint": "^4.4.1",
     "eslint-config-google": "^0.9.1",
     "webpack": "^3.5.5"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0"
   }
 }
