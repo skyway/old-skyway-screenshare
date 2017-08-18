@@ -1,0 +1,30 @@
+{
+  "name": "ECLRTC-ScreenShare",
+  "version": "1.0.0",
+  "description": "ScreenShare library for ECL WebRTC",
+  "main": "dist/screenshare.js",
+  "scripts": {
+    "lint": "eslint src",
+    "dev": "",
+    "build": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nttcom-webcore/ECLRTC-ScreenShare.git"
+  },
+  "keywords": [],
+  "author": "NTT Communications Corp.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nttcom-webcore/ECLRTC-ScreenShare/issues"
+  },
+  "homepage": "https://github.com/nttcom-webcore/ECLRTC-ScreenShare#readme",
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "eslint": "^4.4.1",
+    "eslint-config-google": "^0.9.1",
+    "webpack": "^3.5.5"
+  }
+}
