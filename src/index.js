@@ -40,14 +40,14 @@ class ScreenShare {
       audio: false,
     };
 
-    if (isFinite(param.Width)) {
-      gUMOptions.video.width = {min: param.Width, max: param.Width};
+    if (isFinite(params.Width)) {
+      gUMOptions.video.width = {min: params.Width, max: params.Width};
     }
-    if (isFinite(param.Height)) {
-      gUMOptions.video.height = {min: param.Height, max: param.Height};
+    if (isFinite(params.Height)) {
+      gUMOptions.video.height = {min: params.Height, max: params.Height};
     }
-    if (isFinite(param.FrameRate)) {
-      gUMOptions.video.frameRate = {min: param.FrameRate, max: param.FrameRate};
+    if (isFinite(params.FrameRate)) {
+      gUMOptions.video.frameRate = {min: params.FrameRate, max: params.FrameRate};
     }
 
     this._logger.log('Parameter of getUserMedia: ', gUMOptions);
@@ -60,63 +60,65 @@ class ScreenShare {
       });
   }
 
-  _handleChrome() {
-    if (isChromeExtensionInstalled() === false) {
+  _handleChrome(params, successCallback, errorCallback, onEndedCallback) {
+    const gUMOptions = {
+      video: {
+        mandatory: {
+          chromeMediaSource:   'desktop',
+          chromeMediaSourceId: '',
+        },
+        optional: [{
+          googTemporalLayeredScreencast: true,
+        }],
+      },
+      audio: false,
+    };
+
+    if (isFinite(params.Width)) {
+      gUMOptions.video.mandatory.maxWidth = params.Width;
+      gUMOptions.video.mandatory.minWidth = params.Width;
     }
-    //     // for Chrome
-    //     var _paramChrome: getUserMediaChromeMandatoryObject = {
-    //       mandatory: {
-    //         chromeMediaSource: 'desktop',
-    //         chromeMediaSourceId: ''
-    //       },
-    //       optional: [{
-    //         googTemporalLayeredScreencast: true
-    //       }]
-    //     };
-    //
-    //     if(isFinite(param.Width)) {
-    //       _paramChrome.mandatory.maxWidth = param.Width;
-    //       _paramChrome.mandatory.minWidth = param.Width;
-    //     };
-    //     if(isFinite(param.Height)) {
-    //       _paramChrome.mandatory.maxHeight = param.Height;
-    //       _paramChrome.mandatory.minHeight = param.Height;
-    //     };
-    //     if(isFinite(param.FrameRate)) {
-    //       _paramChrome.mandatory.maxFrameRate = param.FrameRate;
-    //       _paramChrome.mandatory.minFrameRate = param.FrameRate;
-    //     };
-    //
-    //     window.addEventListener('message',(event:MessageEvent)=>{
-    //       this.logger("Received " + '"' + event.data.type + '"' + " message from Extension.");
-    //       if(event.data.type != 'gotStreamId') {
-    //         return;
-    //       }
-    //       _paramChrome.mandatory.chromeMediaSourceId = event.data.streamid;
-    //       this.logger("Parameter of getUserMedia : " + JSON.stringify(_paramChrome));
-    //       navigator.getUserMedia({
-    //         audio: false,
-    //         video: _paramChrome
-    //       }, (stream)=>{
-    //         this.logger("Got a stream for screen share");
-    //         var streamTrack = stream.getVideoTracks();
-    //         streamTrack[0].onended = (event)=>{
-    //           this.logger("Stream ended event fired : " + JSON.stringify(event));
-    //           if(typeof(onEndedEvent) !== "undefined" && onEndedEvent !== null) onEndedEvent();
-    //         };
-    //         success(stream);
-    //       }, (err)=>{
-    //         this.logger("Error message of getUserMedia : " + JSON.stringify(err));
-    //         error(err);
-    //       });
-    //
-    //     });
-    //
-    //     window.postMessage({type:"getStreamId"},"*");
+    if (isFinite(params.Height)) {
+      gUMOptions.video.mandatory.maxHeight = params.Height;
+      gUMOptions.video.mandatory.minHeight = params.Height;
+    }
+    if (isFinite(params.FrameRate)) {
+      gUMOptions.video.mandatory.maxFrameRate = params.FrameRate;
+      gUMOptions.video.mandatory.minFrameRate = params.FrameRate;
+    }
+
+    window.addEventListener('message', ev => {
+      this.logger(`Received ${ev.data.type} message from Extension.`);
+
+      if (ev.data.type !== 'gotStreamId') {
+        return;
+      }
+
+      gUMOptions.video.mandatory.chromeMediaSourceId = ev.data.streamid;
+
+      this.logger('Parameter of getUserMedia: ', gUMOptions);
+
+      navigator.mediaDevices.getUserMedia(gUMOptions)
+        .then(stream => {
+          const [streamTrack] = stream.getVideoTracks();
+          streamTrack.onended = ev => {
+            this.logger('Stream ended event fired: ', ev);
+            onEndedCallback();
+          };
+          return successCallback(stream);
+        })
+        .catch(err => {
+          this._logger.log('Error message of getUserMedia: ', err);
+          return errorCallback(err);
+        });
+    });
+
+    window.postMessage({type: 'getStreamId'}, '*');
   }
 
   stopScreenShare() {
-    console.error('TODO: implement');
+    // TODO: implement
+    return false;
   }
 
   isEnabledExtension() {
