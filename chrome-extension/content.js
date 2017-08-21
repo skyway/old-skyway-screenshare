@@ -1,25 +1,23 @@
 // contents script
 
-var port = chrome.runtime.connect();
+const port = chrome.runtime.connect();
 
-window.addEventListener("message",function(event){
-    if (event.source != window) return;
-    if (event.data.type == 'getStreamId') {
-        port.postMessage('getStreamId', function(response){
-            console.log(response);
-        });
-    }
-},false);
+window.addEventListener('message', ev => {
+  if (ev.source !== window) return;
+  if (ev.data.type !== 'getStreamId') return;
 
-port.onMessage.addListener(function(request, sender, sendResponse){
-    window.postMessage({type: 'gotStreamId', streamid: request.streamid},'*');
+  port.postMessage('getStreamId');
+}, false);
+
+port.onMessage.addListener(({streamid}, sender, sendResponse) => {
+  window.postMessage({type: 'gotStreamId', streamid}, '*');
 });
 
 // To notice ScreenShareExtention is installed, set global variable of
 // window.ScreenShareExtentionExists in front side.
-var elt = document.createElement("script");
-elt.innerHTML = "window.ScreenShareExtentionExists = true;";
-document.body.appendChild(elt);
+const elt = document.createElement('script');
+elt.innerHTML = 'window.ScreenShareExtentionExists = true;';
+document.head.appendChild(elt);
 
 // To notice ScreenShareExtention is get ready, we send message to
 // front side with type = ScreenShareInjected. For inline install pattern,
@@ -33,5 +31,4 @@ document.body.appendChild(elt);
 //   }
 // }, false);
 //
-console.log("script injected.");
-window.postMessage({ type: 'ScreenShareInjected' }, '*');
+window.postMessage({type: 'ScreenShareInjected'}, '*');
