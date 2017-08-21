@@ -47,5 +47,5 @@ if (process.env.NODE_ENV === 'production') {
 // eslint-disable-next-line
 function _getCopyRight() {
   const currentYear = new Date().getFullYear();
-  return `skywayjs Copyright(c) ${currentYear} NTT Communications Corporation`.trim();
+  return `ECL WebRTC Copyright(c) ${currentYear} NTT Communications Corporation`.trim();
 }
