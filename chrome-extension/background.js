@@ -20,23 +20,19 @@ chrome.runtime.onConnect.addListener(port => {
   });
 });
 
-injectContentScriptToExistingTabs();
-
 // inject content script to existing tabs, for inline install extensions
 // this type of code is required to execute it when installed.
 // Otherwise, after inline install, user has to reload web pages (this is quite annoying)
-function injectContentScriptToExistingTabs() {
-  // obtain target tabs to inject content script
-  chrome.tabs.query({
-    status: 'complete',
-    url:    `*://${config.hostname}/*`,
-  }, tabs => {
-    tabs.forEach(tab => {
-      // inject script
-      chrome.tabs.executeScript(tab.id, {
-        file:  'content.js',
-        runAt: 'document_start',
-      });
+// obtain target tabs to inject content script
+chrome.tabs.query({
+  status: 'complete',
+  url:    `*://${config.hostname}/*`,
+}, tabs => {
+  tabs.forEach(tab => {
+    // inject script
+    chrome.tabs.executeScript(tab.id, {
+      file:  'content.js',
+      runAt: 'document_start',
     });
   });
-}
+});
