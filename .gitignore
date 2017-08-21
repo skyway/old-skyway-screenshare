@@ -186,5 +186,5 @@ tramp
 # JSDocs
 docs
 
-# Example codes use this key
-/examples/key.js
+# Generated extension
+/chrome-extension/screenshare_chrome_extension.zip
