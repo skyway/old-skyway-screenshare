@@ -1,0 +1,27 @@
+{
+  "name": "Your extension name here",
+  "short_name": "Your extension short_name here",
+  "version": "Your extension version number here",
+  "manifest_version": 2,
+  "description": "Your extension description here",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "permissions": [
+    "desktopCapture",
+    "tabs",
+    "https://*.example.com/*" // in case of inline installation, you have to set your webapp's origin here.
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [{
+    "matches": ["https://*.example.com/*"], // change origin name as your own.
+    "js": ["content.js"],
+    "all_frames": true,
+    "run_at": "document_end"
+  }]
+}
