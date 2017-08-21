@@ -1,11 +1,9 @@
 # ScreenShare
 ## TODO
 - impl
-- cp chrome-extension
-- build extension
+  - comment w/ lint
 - fix examples
-- comment w/ lint
-- README / LICENSE
+- fix README / LICENSE
 
 ## Setting up
 
@@ -15,11 +13,11 @@ Use `npm install` to set up dependencies.
 # run eslint
 npm run lint
 
-# run all unit tests
-npm run test # OR npm test OR npm t
-
 # build the library
-npm run build
+npm run build:lib
+
+# build the chrome extension
+npm run build:ext
 ```
 
 ## Examples
@@ -35,4 +33,4 @@ After making changes in `src/`, you run
 - `npm run lint` to validate
 - `npm test` to run tests
 
-then the `npm run build` and build `eclwebrtc(.min).js` which is stored in `dist` directory!
+then the `npm run build` and build `screenshare(.min).js` which is stored in `dist` directory!
