@@ -88,7 +88,7 @@ class ScreenShare {
     }
 
     window.addEventListener('message', ev => {
-      this.logger(`Received ${ev.data.type} message from Extension.`);
+      this._logger.log(`Received ${ev.data.type} message from Extension.`);
 
       if (ev.data.type !== 'gotStreamId') {
         return;
@@ -96,13 +96,13 @@ class ScreenShare {
 
       gUMOptions.video.mandatory.chromeMediaSourceId = ev.data.streamid;
 
-      this.logger('Parameter of getUserMedia: ', gUMOptions);
+      this._logger.log('Parameter of getUserMedia: ', gUMOptions);
 
       navigator.mediaDevices.getUserMedia(gUMOptions)
         .then(stream => {
           const [streamTrack] = stream.getVideoTracks();
           streamTrack.onended = ev => {
-            this.logger('Stream ended event fired: ', ev);
+            this._logger.log('Stream ended event fired: ', ev);
             onEndedCallback();
           };
           return successCallback(stream);
@@ -123,11 +123,11 @@ class ScreenShare {
 
   isEnabledExtension() {
     if (isChromeExtensionInstalled()) {
-      this.logger('ScreenShare Extension available');
+      this._logger.log('ScreenShare Extension available');
       return true;
     }
 
-    this.logger('ScreenShare Extension not available');
+    this._logger.log('ScreenShare Extension not available');
     return false;
   }
 }
