@@ -1,6 +1,4 @@
-# ScreenShare
-## TODO
-- fix README / LICENSE
+# ECL ScreenShare
 
 ## Setting up
 
@@ -19,15 +17,19 @@ npm run build:ext
 
 ## Examples
 
-TBD
+Start web server on repository root.
 
 ## Contributing
 
 Make sure you have nodejs installed. Run `npm install` to get started.
 
-After making changes in `src/`, you run
+After making changes in `src/`, `chrome-extension/` you run
 
 - `npm run lint` to validate
-- `npm test` to run tests
 
-then the `npm run build` and build `screenshare(.min).js` which is stored in `dist` directory!
+then run build commands
+
+- `npm run build:lib` to build `screenshare(.min).js`
+- `npm run build:ext` to build `screenshare_chrome_extension.zip`
+
+which is stored in `dist` directory!
