@@ -5,9 +5,9 @@ class Logger {
     this._enable = isDebugMode;
   }
 
-  log(message) {
+  log(...message) {
     if (this._enable) {
-      console.log('ECLWebRTC-ScreenShare: ', message);
+      console.log('ECLWebRTC-ScreenShare: ', ...message);
     }
   }
 }
