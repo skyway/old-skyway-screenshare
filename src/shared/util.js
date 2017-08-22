@@ -1,6 +1,7 @@
-// TODO:
-/* eslint-disable require-jsdoc */
-
+/**
+ * Get browser name.
+ * @return {string} `firefox` OR `chrome` OR `N/A`.
+ */
 export function getBrowserName() {
   const ua = navigator.userAgent.toLowerCase();
 
@@ -17,6 +18,10 @@ export function getBrowserName() {
   return 'N/A';
 }
 
+/**
+ * Returns true if extension installed.
+ * @return {boolean} Chrome extension is installed or NOT.
+ */
 export function isChromeExtensionInstalled() {
   if ('ScreenShareExtentionExists' in window) {
     return true;

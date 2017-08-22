@@ -1,8 +1,5 @@
 # ScreenShare
 ## TODO
-- impl
-  - comment w/ lint
-- fix examples
 - fix README / LICENSE
 
 ## Setting up

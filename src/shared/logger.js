@@ -1,10 +1,19 @@
-// TODO:
-/* eslint-disable require-jsdoc */
+/**
+ * Class for logging.
+ */
 class Logger {
-  constructor(isDebugMode) {
+  /**
+   * Create Logger instance.
+   * @param {boolean} [isDebugMode=false] - If true, print logs.
+   */
+  constructor(isDebugMode = false) {
     this._enable = isDebugMode;
   }
 
+  /**
+   * Log with prefix.
+   * @param {...*} message - Arguments to log.
+   */
   log(...message) {
     if (this._enable) {
       console.log('ECLWebRTC-ScreenShare: ', ...message);

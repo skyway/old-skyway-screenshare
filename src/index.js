@@ -1,18 +1,35 @@
-// TODO:
-/* eslint-disable require-jsdoc */
 import Logger from './shared/logger';
 import {
   getBrowserName,
   isChromeExtensionInstalled,
 } from './shared/util';
 
+/**
+ * Class for ScreenShare.
+ * Currently, only Chrome and Firefox are supported.
+ */
 class ScreenShare {
+  /**
+   * Create ScreenShare instance.
+   * @param {Object} [options] - Options for ScreenShare.
+   * @param {boolean} [options.debug=false] - If true, print logs.
+   */
   constructor(options = {debug: false}) {
     const isDebugMode = 'debug' in options ? Boolean(options.debug) : false;
 
     this._logger = new Logger(isDebugMode);
   }
 
+  /**
+   * Start screen share.
+   * @param {Object} [params] - Options for getUserMedia constraints.
+   * @param {number} [params.Width] - Constraints for width.
+   * @param {number} [params.Height] - Constraints for height.
+   * @param {number} [params.FrameRate] - Constraints for frameRate.
+   * @param {function} [successCallback] - Callback on getUserMedia resolved.
+   * @param {function} [errorCallback] - Callback on getUserMedia rejected.
+   * @param {function} [onEndedCallback] - Callback on stream ended.
+   */
   startScreenShare(
     params = {},
     successCallback = () => {},
@@ -32,6 +49,15 @@ class ScreenShare {
     }
   }
 
+  /**
+   * Start Firefox screen share.
+   * @param {Object} [params] - Options for getUserMedia constraints.
+   * @param {number} [params.Width] - Constraints for width.
+   * @param {number} [params.Height] - Constraints for height.
+   * @param {number} [params.FrameRate] - Constraints for frameRate.
+   * @param {function} [successCallback] - Callback on getUserMedia resolved.
+   * @param {function} [errorCallback] - Callback on getUserMedia rejected.
+   */
   _handleFirefox(params, successCallback, errorCallback) {
     const gUMOptions = {
       video: {
@@ -60,6 +86,16 @@ class ScreenShare {
       });
   }
 
+  /**
+   * Start Chrome screen share with extension.
+   * @param {Object} [params] - Options for getUserMedia constraints.
+   * @param {number} [params.Width] - Constraints for width.
+   * @param {number} [params.Height] - Constraints for height.
+   * @param {number} [params.FrameRate] - Constraints for frameRate.
+   * @param {function} [successCallback] - Callback on getUserMedia resolved.
+   * @param {function} [errorCallback] - Callback on getUserMedia rejected.
+   * @param {function} [onEndedCallback] - Callback on stream ended.
+   */
   _handleChrome(params, successCallback, errorCallback, onEndedCallback) {
     const gUMOptions = {
       video: {
@@ -116,11 +152,18 @@ class ScreenShare {
     window.postMessage({type: 'getStreamId'}, '*');
   }
 
+  /**
+   * Stop screen share.
+   * @return {boolean} TODO: Implement
+   */
   stopScreenShare() {
-    // TODO: implement
     return false;
   }
 
+  /**
+   * Returns true if Chrome extension installed.
+   * @return {boolean} Chrome extension installed propery or NOT.
+   */
   isEnabledExtension() {
     if (isChromeExtensionInstalled()) {
       this._logger.log('ScreenShare Extension available');
