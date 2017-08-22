@@ -9,6 +9,7 @@
 $(function() {
     // APIキー（6165842a-5c0d-11e3-b514-75d3313b9d05はlocalhostのみ利用可能）
     const APIKEY = '6165842a-5c0d-11e3-b514-75d3313b9d05';
+    const browser = _getBrowserName();
 
     // Callオブジェクト
     let existingCall = null;
@@ -60,8 +61,9 @@ $(function() {
 
   // スクリーンシェアを開始
   $('#start-screen').on('click', () => {
-    if (ss.isEnabledExtension() === false) {
-      alert('ExtensionまたはAddonをインストールして下さい');
+    if (!(ss.isEnabledExtension() && browser === 'chrome'
+    || browser === 'firefox')) {
+      alert('スクリーンシェアが利用できません。Chromeの場合は、拡張をインストールしてください。');
       return;
     }
 
@@ -160,5 +162,21 @@ $(function() {
     $('#their-id').text(call.peer);
     $('#step1, #step2').hide();
     $('#step3').show();
+  }
+
+  function _getBrowserName() {
+    const ua = navigator.userAgent.toLowerCase();
+
+    // Firefox
+    if (ua.indexOf('firefox') !== -1) {
+      return 'firefox';
+    }
+
+    // Chrome
+    if (ua.indexOf('chrome') !== -1 && ua.indexOf('edge') === -1) {
+      return 'chrome';
+    }
+
+    return 'N/A';
   }
 });
