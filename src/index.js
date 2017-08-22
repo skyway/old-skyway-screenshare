@@ -87,14 +87,14 @@ class ScreenShare {
       gUMOptions.video.mandatory.minFrameRate = params.FrameRate;
     }
 
-    window.addEventListener('message', ev => {
-      this._logger.log(`Received ${ev.data.type} message from Extension.`);
+    window.addEventListener('message', ({data}) => {
+      this._logger.log(`Received ${data.type} message from Extension.`, data);
 
-      if (ev.data.type !== 'gotStreamId') {
+      if (data.type !== 'gotStreamId') {
         return;
       }
 
-      gUMOptions.video.mandatory.chromeMediaSourceId = ev.data.streamid;
+      gUMOptions.video.mandatory.chromeMediaSourceId = data.streamId;
 
       this._logger.log('Parameter of getUserMedia: ', gUMOptions);
 

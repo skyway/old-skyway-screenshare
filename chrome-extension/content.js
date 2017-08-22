@@ -1,5 +1,4 @@
 // contents script
-
 const port = chrome.runtime.connect();
 
 window.addEventListener('message', ev => {
@@ -9,8 +8,8 @@ window.addEventListener('message', ev => {
   port.postMessage('getStreamId');
 }, false);
 
-port.onMessage.addListener(({streamid}, sender, sendResponse) => {
-  window.postMessage({type: 'gotStreamId', streamid}, '*');
+port.onMessage.addListener(({streamId}, sender, sendResponse) => {
+  window.postMessage({type: 'gotStreamId', streamId}, '*');
 });
 
 // To notice ScreenShareExtention is installed, set global variable of

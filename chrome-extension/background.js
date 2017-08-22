@@ -13,7 +13,7 @@ chrome.runtime.onConnect.addListener(port => {
         ['screen', 'window'],
         port.sender.tab,
         streamId => {
-          port.postMessage({streamid});
+          port.postMessage({streamId});
         }
       );
     }
