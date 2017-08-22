@@ -51,12 +51,12 @@ class ScreenShare {
 
   /**
    * Start Firefox screen share.
-   * @param {Object} [params] - Options for getUserMedia constraints.
+   * @param {Object} params - Options for getUserMedia constraints.
    * @param {number} [params.Width] - Constraints for width.
    * @param {number} [params.Height] - Constraints for height.
    * @param {number} [params.FrameRate] - Constraints for frameRate.
-   * @param {function} [successCallback] - Callback on getUserMedia resolved.
-   * @param {function} [errorCallback] - Callback on getUserMedia rejected.
+   * @param {function} successCallback - Callback on getUserMedia resolved.
+   * @param {function} errorCallback - Callback on getUserMedia rejected.
    */
   _handleFirefox(params, successCallback, errorCallback) {
     const gUMOptions = {
@@ -88,13 +88,13 @@ class ScreenShare {
 
   /**
    * Start Chrome screen share with extension.
-   * @param {Object} [params] - Options for getUserMedia constraints.
+   * @param {Object} params - Options for getUserMedia constraints.
    * @param {number} [params.Width] - Constraints for width.
    * @param {number} [params.Height] - Constraints for height.
    * @param {number} [params.FrameRate] - Constraints for frameRate.
-   * @param {function} [successCallback] - Callback on getUserMedia resolved.
-   * @param {function} [errorCallback] - Callback on getUserMedia rejected.
-   * @param {function} [onEndedCallback] - Callback on stream ended.
+   * @param {function} successCallback - Callback on getUserMedia resolved.
+   * @param {function} errorCallback - Callback on getUserMedia rejected.
+   * @param {function} onEndedCallback - Callback on stream ended.
    */
   _handleChrome(params, successCallback, errorCallback, onEndedCallback) {
     const gUMOptions = {

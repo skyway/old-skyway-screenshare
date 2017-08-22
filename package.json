@@ -5,7 +5,7 @@
   "main": "dist/screenshare.js",
   "module": "src/index.js",
   "scripts": {
-    "lint": "eslint ./examples ./src ./tests ./chrome-extension",
+    "lint": "eslint ./examples ./src ./chrome-extension",
     "build:ext": "zip ./dist/screenshare_chrome_extension.zip ./chrome-extension/*",
     "build:lib": "NODE_ENV=production webpack",
     "dev:lib": "webpack -w"
