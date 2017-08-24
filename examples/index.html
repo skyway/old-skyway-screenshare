@@ -17,36 +17,36 @@
     <div class="pure-u-2-3" id="video-container">
         <p>Peer Video</p>
         <video id="their-video" autoplay></video>
-        <p>My Video(480☓240固定)</p>
+        <p>My Video</p>
         <video id="my-video" muted="true" width="480" height="240" autoplay></video>
     </div>
 
     <!-- Steps -->
     <div class="pure-u-1-3" id="control">
-        <h2>SkyWay Screen Share Demo</h2>
-        <label>メディアリソース選択</label>
-        <p><a href="#" class="pure-button pure-button-success" id="start-screen">スクリーンシェア</a></p>
-        <p><label>Width : </label><input id="Width" size="5" value="640"></p>
-        <p><label>Height : </label><input id="Height" size="5" value="480"></p>
-        <p><label>FrameRate : </label><input id="FrameRate" size="5" value="1"></p>
-        <p><a href="#" class="pure-button pure-button-success" id="start-camera">カメラ映像</a></p>
+        <h2>ECLWebRTC Screen Share Demo</h2>
+        <label>Media source selection:</label>
+        <p><a href="#" class="pure-button pure-button-success" id="start-screen">Screen</a></p>
+        <p><label>width : </label><input id="Width" size="5" value="640"></p>
+        <p><label>height : </label><input id="Height" size="5" value="480"></p>
+        <p><label>frameRate : </label><input id="FrameRate" size="5" value="1"></p>
+        <p><a href="#" class="pure-button pure-button-success" id="start-camera">Camera</a></p>
 
 
         <!-- Get local audio/video stream -->
         <div id="step1">
-            <p>カメラ・マイクの利用を許可して下さい。</p>
+            <p>Please allow the camera and microphone to be used.</p>
             <div id="step1-error">
-                <p>カメラまたはマイクにアクセスできません。ブラウザで利用が許可されているか確認して下さい。</p>
-                <a href="#" class="pure-button pure-button-error" id="step1-retry">メディアを再取得</a>
+                <p>The camera or the microphone cannot be accessed. Please confirm that you have the correct permissions set in your browser</p>
+                <a href="#" class="pure-button pure-button-error" id="step1-retry">Retry getting media</a>
             </div>
         </div>
 
         <!-- Make calls to others -->
         <div id="step2">
-            <p>Your Peerid: <span id="my-id">...</span></p>
-            <h3>相手を呼び出す</h3>
+            <p>My peer id: <span id="my-id">...</span></p>
+            <h3>Call</h3>
             <div class="pure-form">
-                <label for="otherpeerid">接続先のPeerID：</label>
+                <label for="otherpeerid">Recipient peer id:</label>
                 <input id="otherpeerid">
                 <a href="#" class="pure-button pure-button-success" id="make-call">Call</a>
             </div>
@@ -54,9 +54,9 @@
 
         <!-- Call in progress -->
         <div id="step3">
-            <p>接続先：<span id="their-id">...</span></p>
-            <p><a href="#" class="pure-button pure-button-error" id="stop-screen">スクリーンシェアを終了する</a></p>
-            <p><a href="#" class="pure-button pure-button-error" id="end-call">チャットを終了する</a></p>
+            <p>Connected to: <span id="their-id">...</span></p>
+            <p><a href="#" class="pure-button pure-button-error" id="stop-screen">End screenshare</a></p>
+            <p><a href="#" class="pure-button pure-button-error" id="end-call">End call</a></p>
         </div>
     </div>
 
