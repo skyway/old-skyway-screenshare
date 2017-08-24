@@ -104,10 +104,10 @@ As of Firefox 52, no installation is needed to use screenshare on firefox.
 ## API reference
 
 ```javascript
-var screenshare = new ScreenShare([options]);
+var screenshare = new ScreenShare({ debug: true });
 ```
 
-- options
+- options (This argument is optional)
   - debug (boolean)
     - Output the debug log on the browser developer console.
 

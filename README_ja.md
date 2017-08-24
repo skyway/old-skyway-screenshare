@@ -103,10 +103,10 @@ Firefox 52から拡張なしでスクリーンシェア機能を使えるよう�
 ## API reference
 
 ```javascript
-var screenshare = new ScreenShare([options]);
+var screenshare = new ScreenShare({ debug: true });
 ```
 
-- options
+- options (この引数は任意です)
   - debug (boolean)
     - ブラウザの開発者コンソールにデバッグログを出力します.
 
