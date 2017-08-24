@@ -7,8 +7,8 @@
  */
 
 $(function() {
-    // APIキー（6165842a-5c0d-11e3-b514-75d3313b9d05はlocalhostのみ利用可能）
-    const APIKEY = '6165842a-5c0d-11e3-b514-75d3313b9d05';
+    // APIキー（bc26d227-0bf2-460a-b2cb-129a0dfafdc2はlocalhostのみ利用可能）
+    const APIKEY = 'bc26d227-0bf2-460a-b2cb-129a0dfafdc2';
     const browser = _getBrowserName();
 
     // Callオブジェクト
