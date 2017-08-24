@@ -130,21 +130,20 @@ screenshare.startScreenShare({
 });
 ```
 
-### stopScreenShare
-
-- スクリーンシェアを停止します
- - startScreenShareで取得したstreamオブジェクトのstop()メソッドを実行する
-
-```javascript
-stream.stop();
-```
-
 ### isEnabledExtension
 
 - Chrome extensionsがインストールされているかを確認する`<true or false>`
 
 ```javascript
 var result = screenshare.isEnabledExtension();
+```
+
+### スクリーンシェアを停止
+
+- `startScreenShare()` で取得したstreamオブジェクトのstop()メソッドを実行する
+
+```javascript
+stream.stop();
 ```
 
 ### Event

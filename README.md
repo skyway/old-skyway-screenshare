@@ -131,20 +131,20 @@ screenshare.startScreenShare({
 });
 ```
 
-### stopScreenShare
-
-- Stop the Screen share.
-
-```javascript
-stream.stop();
-```
-
 ### isEnabledExtension
 
 - Check whether the extension is installed or not. `<true or false>`
 
 ```javascript
 var result = screenshare.isEnabledExtension();
+```
+
+### stopping the screenshare stream
+
+- Call the `stop()` method directly on the stream object gotten from the `startScreenShare()` function.
+
+```javascript
+stream.stop();
 ```
 
 ### Event
