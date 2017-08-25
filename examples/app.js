@@ -7,59 +7,59 @@
  */
 
 $(function() {
-    // APIキー（6165842a-5c0d-11e3-b514-75d3313b9d05はlocalhostのみ利用可能）
-    const APIKEY = '6165842a-5c0d-11e3-b514-75d3313b9d05';
+    // API key (bc26d227-0bf2-460a-b2cb-129a0dfafdc2 can only be used on localhost)
+    const APIKEY = 'bc26d227-0bf2-460a-b2cb-129a0dfafdc2';
     const browser = _getBrowserName();
 
-    // Callオブジェクト
+    // Call object
     let existingCall = null;
 
     // localStream
     let localStream = null;
 
-    // PeerJSオブジェクトを生成
+    // Create Peer object
     const peer = new Peer({key: APIKEY, debug: 3});
 
-    // スクリーンキャプチャの準備
+    // Prepare screen share object
     const ss = new ScreenShare({debug: true});
 
-    // PeerIDを生成
+    // Get peer id from server
     peer.on('open', () => {
       $('#my-id').text(peer.id);
     });
 
-    // 相手からのコールを受信したら自身のメディアストリームをセットして返答
+    // Set your own stream and answer if you get a call
     peer.on('call', call => {
       call.answer(localStream);
       step3(call);
       console.log('event:recall');
     });
 
-    // エラーハンドラー
+    // Error handler
     peer.on('error', err => {
       alert(err.message);
       step2();
     });
 
-  // 相手に接続
+  // Call peer
   $('#make-call').on('click', () => {
     const call = peer.call($('#otherpeerid').val(), localStream);
     step3(call);
   });
 
-  // 切断
+  // Finish call
   $('#end-call').on('click', () => {
     existingCall.close();
     step2();
   });
 
-  // メディアストリームを再取得
+  // Get media stream again
   $('#step1-retry').on('click', () => {
     $('#step1-error').hide();
     step1();
   });
 
-  // スクリーンシェアを開始
+  // Start screenshare
   $('#start-screen').on('click', () => {
     if (!(ss.isEnabledExtension() && browser === 'chrome'
     || browser === 'firefox')) {
@@ -93,13 +93,13 @@ $(function() {
     );
   });
 
-  // スクリーンシェアを終了
+  // End screenshare
   $('#stop-screen').on('click', () => {
     ss.stopScreenShare();
     localStream.getTracks().forEach(track => track.stop());
   });
 
-  // カメラ
+  // Camera
   $('#start-camera').on('click', () => {
     navigator.mediaDevices.getUserMedia({audio: true, video: true})
       .then(stream => {
@@ -118,7 +118,7 @@ $(function() {
       });
   });
 
-  // ステップ１実行
+  // Start step 1
   step1();
 
   function step1() {
@@ -134,31 +134,31 @@ $(function() {
   }
 
   function step2() {
-    // UIコントロール
+    // Update UI
     $('#step1, #step3').hide();
     $('#step2').show();
   }
 
   function step3(call) {
-    // すでに接続中の場合はクローズする
+    // Close any existing calls
     if (existingCall) {
       existingCall.close();
     }
 
-    // 相手からのメディアストリームを待ち受ける
+    // Wait for peer's media stream
     call.on('stream', stream => {
       $('#their-video')[0].srcObject = stream;
       $('#step1, #step2').hide();
       $('#step3').show();
     });
 
-    // 相手がクローズした場合
+    // If the peer closes their connection
     call.on('close', step2);
 
-    // Callオブジェクトを保存
+    // Save call object
     existingCall = call;
 
-    // UIコントロール
+    // Update UI
     $('#their-id').text(call.peer);
     $('#step1, #step2').hide();
     $('#step3').show();
