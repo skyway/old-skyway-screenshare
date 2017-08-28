@@ -15,7 +15,7 @@ port.onMessage.addListener(({streamId}, sender, sendResponse) => {
 // To notice ScreenShareExtention is installed, set global variable of
 // window.ScreenShareExtentionExists in front side.
 const elt = document.createElement('script');
-elt.innerHTML = 'window.ScreenShareExtentionExists = true;';
+elt.innerHTML = 'window.__eclWebRTCScreenShareExtensionAvailable__ = true;';
 document.head.appendChild(elt);
 
 // To notice ScreenShareExtention is get ready, we send message to
