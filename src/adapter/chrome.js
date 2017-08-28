@@ -7,7 +7,7 @@ class ChromeAdapter {
     this._logger.log('Chrome adapter ready');
   }
 
-  start(params) {
+  start(params = {}) {
     const that = this;
 
     return new Promise((resolve, reject) => {

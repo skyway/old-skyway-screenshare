@@ -7,7 +7,7 @@ class FirefoxAdapter {
     this._logger.log('Firefox adapter ready');
   }
 
-  start(params) {
+  start(params = {}) {
     const gUMConstraints = this._paramsToConstraints(params);
     this._logger.log('Parameter of getUserMedia: ', gUMConstraints);
 
