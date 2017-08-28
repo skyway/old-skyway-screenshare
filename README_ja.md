@@ -103,47 +103,48 @@ Firefox 52から拡張なしでスクリーンシェア機能を使えるよう�
 ## API reference
 
 ```javascript
-var screenshare = new ScreenShare({ debug: true });
+var screenshare = ScreenShare.create({ debug: true });
 ```
 
 - options (この引数は任意です)
   - debug (boolean)
     - ブラウザの開発者コンソールにデバッグログを出力します.
 
-### startScreenShare
+### start
 
 - スクリーンシェアを開始します
 
 ```javascript
-screenshare.startScreenShare({
-	"Width": <number>,
-	"Height": <number>,
-	"FrameRate": <number>
-}, function(stream) {
- // success callback
- // 成功するとstreamオブジェクトを取得できます
-}, function(error) {
- // error callback
-}, function() {
- // onEnded callback
- // スクリーンシェアが終了した時に発火します（Chromeのみ対応/任意）
-});
+screenshare.start({
+  width: <number>,
+  height: <number>,
+  frameRate: <number>,
+})
+  .then(function(stream) {
+     // success callback
+     // 成功するとstreamオブジェクトを取得できます
+  })
+  .catch(function(error) {
+     // error callback
+  });
 ```
 
-### isEnabledExtension
+### stop
 
-- Chrome extensionsがインストールされているかを確認する`<true or false>`
+- `start()` で取得したstreamオブジェクトを停止します
 
 ```javascript
-var result = screenshare.isEnabledExtension();
+screenshare.stop();
 ```
 
-### スクリーンシェアを停止
+### isScreenShareAvailable
 
-- `startScreenShare()` で取得したstreamオブジェクトのstop()メソッドを実行する
+- Chrome: extensionsがインストールされているかを確認する`<true or false>`
+- Firefox: `true`
+- その他のブラウザ: `false`
 
 ```javascript
-stream.stop();
+var result = screenshare.isScreenShareAvailable();
 ```
 
 ### Event

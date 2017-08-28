@@ -104,47 +104,48 @@ As of Firefox 52, no installation is needed to use screenshare on firefox.
 ## API reference
 
 ```javascript
-var screenshare = new ScreenShare({ debug: true });
+var screenshare = ScreenShare.create({ debug: true });
 ```
 
 - options (This argument is optional)
   - debug (boolean)
     - Output the debug log on the browser developer console.
 
-### startScreenShare
+### start
 
 - Start the screen share.
 
 ```javascript
-screenshare.startScreenShare({
-	"Width": <number>,
-	"Height": <number>,
-	"FrameRate": <number>
-}, function(stream) {
- // success callback
- // Get the media stream for the screen share
-}, function(error) {
- // error callback
-}, function() {
- // onEnded callback(optional/Chrome only)
- // Fires when the screen share has finished.
-});
+screenshare.start({
+  width: <number>,
+  height: <number>,
+  frameRate: <number>,
+})
+  .then(function(stream) {
+     // success callback
+     // Get the media stream for the screen share
+  })
+  .catch(function(error) {
+     // error callback
+  });
 ```
 
-### isEnabledExtension
+### stop
 
-- Check whether the extension is installed or not. `<true or false>`
+- Stop tracks of stream gotten from `start()`
 
 ```javascript
-var result = screenshare.isEnabledExtension();
+screenshare.stop();
 ```
 
-### stopping the screenshare stream
+### isScreenShareAvailable
 
-- Call the `stop()` method directly on the stream object gotten from the `startScreenShare()` function.
+- Chrome: Check whether the extension is installed or not. `<true or false>`
+- Firefox: Returns `true`.
+- Others: Returns `false`.
 
 ```javascript
-stream.stop();
+var result = screenshare.isScreenShareAvailable();
 ```
 
 ### Event
