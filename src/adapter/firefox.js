@@ -44,13 +44,13 @@ class FirefoxAdapter {
       gUMConstraints.video.mediaSource = params.mediaSource;
     }
     if (isFinite(params.Width)) {
-      gUMConstraints.video.width = {min: params.Width, max: params.Width};
+      gUMConstraints.video.width = {min: params.width, max: params.width};
     }
     if (isFinite(params.Height)) {
-      gUMConstraints.video.height = {min: params.Height, max: params.Height};
+      gUMConstraints.video.height = {min: params.height, max: params.height};
     }
     if (isFinite(params.FrameRate)) {
-      gUMConstraints.video.frameRate = {min: params.FrameRate, max: params.FrameRate};
+      gUMConstraints.video.frameRate = {min: params.frameRate, max: params.frameRate};
     }
 
     return gUMConstraints;
