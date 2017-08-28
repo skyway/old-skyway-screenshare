@@ -1,4 +1,3 @@
-/* eslint-disable require-jsdoc, valid-jsdoc */
 import Logger from './shared/logger';
 import {
   getBrowserName,
@@ -7,7 +6,7 @@ import ChromeAdapter from './adapter/chrome';
 import FirefoxAdapter from './adapter/firefox';
 
 /**
- * Class for ScreenShare.
+ * Factory class for ScreenShare.
  * Currently, only Chrome and Firefox are supported.
  */
 class ScreenShare {
@@ -15,6 +14,7 @@ class ScreenShare {
    * Create ScreenShare instance.
    * @param {Object} [options] - Options for ScreenShare.
    * @param {boolean} [options.debug=false] - If true, print logs.
+   * @return {FirefoxAdapter|ChromeAdapter|null} - Adapter instance for each supported browser, or null.
    */
   static create(options = {debug: false}) {
     const logger = new Logger(options.debug);

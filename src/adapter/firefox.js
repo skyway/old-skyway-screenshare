@@ -1,5 +1,11 @@
-/* eslint-disable require-jsdoc */
+/**
+ * ScreenShare class for Firefox.
+ */
 class FirefoxAdapter {
+  /**
+   * Create instance.
+   * @param {Logger} logger - Logger instance passed by factory.
+   */
   constructor(logger) {
     this._logger = logger;
     this._stream = null;
@@ -7,6 +13,16 @@ class FirefoxAdapter {
     this._logger.log('Firefox adapter ready');
   }
 
+  /**
+   * Start screen share.
+   * For Firefox, you can specify mediaSource to share.
+   * @param {Object} [params] - Options for getUserMedia constraints.
+   * @param {number} [params.width] - Constraints for width.
+   * @param {number} [params.height] - Constraints for height.
+   * @param {number} [params.frameRate] - Constraints for frameRate.
+   * @param {string} [params.mediaSource] - Constraints for mediaSource.
+   * @return {Promise<MediaStream>} - Promise resolved with MediaStream instance.
+   */
   start(params = {}) {
     const gUMConstraints = this._paramsToConstraints(params);
     this._logger.log('Parameter of getUserMedia: ', gUMConstraints);
@@ -19,6 +35,9 @@ class FirefoxAdapter {
       });
   }
 
+  /**
+   * Stop screen share.
+   */
   stop() {
     if (this._stream instanceof MediaStream === false) {
       return;
@@ -28,10 +47,24 @@ class FirefoxAdapter {
     this._stream = null;
   }
 
+  /**
+   * Returns whether screen sharing is available or NOT.
+   * @return {boolean} - Screen sharing is available or NOT.
+   */
   isScreenShareAvailable() {
     return true;
   }
 
+  /**
+   * Returns whether screen sharing is available or NOT.
+   * @param {Object} params - Options for getUserMedia constraints.
+   * @param {number} [params.width] - Constraints for width.
+   * @param {number} [params.height] - Constraints for height.
+   * @param {number} [params.frameRate] - Constraints for frameRate.
+   * @param {string} [params.mediaSource] - Constraints for mediaSource.
+   * @return {MediaStreamConstraints} - Screen sharing is available or NOT.
+   * @private
+   */
   _paramsToConstraints(params) {
     const gUMConstraints = {
       video: {

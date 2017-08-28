@@ -1,5 +1,11 @@
-/* eslint-disable require-jsdoc */
+/**
+ * ScreenShare class for Chrome.
+ */
 class ChromeAdapter {
+  /**
+   * Create instance.
+   * @param {Logger} logger - Logger instance passed by factory.
+   */
   constructor(logger) {
     this._logger = logger;
     this._stream = null;
@@ -7,6 +13,15 @@ class ChromeAdapter {
     this._logger.log('Chrome adapter ready');
   }
 
+  /**
+   * Start screen share.
+   * For Chrome, you can specify mediaSource to share via dialog called by Extension.
+   * @param {Object} [params] - Options for getUserMedia constraints.
+   * @param {number} [params.width] - Constraints for width.
+   * @param {number} [params.height] - Constraints for height.
+   * @param {number} [params.frameRate] - Constraints for frameRate.
+   * @return {Promise<MediaStream>} - Promise resolved with MediaStream instance.
+   */
   start(params = {}) {
     const that = this;
 
@@ -14,6 +29,11 @@ class ChromeAdapter {
       window.addEventListener('message', _onMessage, false);
       window.postMessage({type: 'getStreamId'}, '*');
 
+      /**
+       * @param {Event} ev.data - Event data from extension.
+       * @param {string} ev.data.type - Event type strings.
+       * @param {string} ev.data.streamId - Screen id to share.
+       */
       function _onMessage({data}) {
         that._logger.log(`Received ${data.type} message from Extension.`, data);
 
@@ -42,6 +62,9 @@ class ChromeAdapter {
     });
   }
 
+  /**
+   * Stop screen share.
+   */
   stop() {
     if (this._stream instanceof MediaStream === false) {
       return;
@@ -51,6 +74,10 @@ class ChromeAdapter {
     this._stream = null;
   }
 
+  /**
+   * Returns whether screen sharing is available or NOT.
+   * @return {boolean} - Screen sharing is available or NOT.
+   */
   isScreenShareAvailable() {
     if ('__eclWebRTCScreenShareExtensionAvailable__' in window) {
       return true;
@@ -59,6 +86,16 @@ class ChromeAdapter {
     return false;
   }
 
+  /**
+   * Returns whether screen sharing is available or NOT.
+   * @param {Object} params - Options for getUserMedia constraints.
+   * @param {number} [params.width] - Constraints for width.
+   * @param {number} [params.height] - Constraints for height.
+   * @param {number} [params.frameRate] - Constraints for frameRate.
+   * @param {string} streamId - Constraints for chromeMediaSourceId by extension.
+   * @return {MediaStreamConstraints} - Screen sharing is available or NOT.
+   * @private
+   */
   _paramsToConstraints(params, streamId) {
     const gUMConstraints = {
       video: {
