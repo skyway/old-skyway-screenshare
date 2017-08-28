@@ -120,6 +120,7 @@ screenshare.start({
   width: <number>,
   height: <number>,
   frameRate: <number>,
+  mediaSource: <string>, // Firefox only
 })
   .then(function(stream) {
      // success callback
@@ -129,6 +130,8 @@ screenshare.start({
      // error callback
   });
 ```
+
+Firefox only, you can specify one of `window`, `application` or `screen` to `mediaSource`.
 
 ### stop
 
