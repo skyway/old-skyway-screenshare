@@ -17,15 +17,3 @@ export function getBrowserName() {
 
   return 'N/A';
 }
-
-/**
- * Returns true if extension installed.
- * @return {boolean} Chrome extension is installed or NOT.
- */
-export function isChromeExtensionInstalled() {
-  if ('ScreenShareExtentionExists' in window) {
-    return true;
-  }
-
-  return false;
-}

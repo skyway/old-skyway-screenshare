@@ -9,7 +9,6 @@
 $(function() {
     // API key (bc26d227-0bf2-460a-b2cb-129a0dfafdc2 can only be used on localhost)
     const APIKEY = 'bc26d227-0bf2-460a-b2cb-129a0dfafdc2';
-    const browser = _getBrowserName();
 
     // Call object
     let existingCall = null;
@@ -21,7 +20,7 @@ $(function() {
     const peer = new Peer({key: APIKEY, debug: 3});
 
     // Prepare screen share object
-    const ss = new ScreenShare({debug: true});
+    const ss = ScreenShare.create({debug: true});
 
     // Get peer id from server
     peer.on('open', () => {
@@ -61,19 +60,17 @@ $(function() {
 
   // Start screenshare
   $('#start-screen').on('click', () => {
-    if (!(ss.isEnabledExtension() && browser === 'chrome'
-    || browser === 'firefox')) {
+    if (ss.isScreenShareAvailable() === false) {
       alert('スクリーンシェアが利用できません。Chromeの場合は、拡張をインストールしてください。');
       return;
     }
 
-    ss.startScreenShare(
-      {
-        Width:     $('#Width').val(),
-        Height:    $('#Height').val(),
-        FrameRate: $('#FrameRate').val(),
-      },
-      stream => {
+    ss.start({
+      width:     $('#Width').val(),
+      height:    $('#Height').val(),
+      frameRate: $('#FrameRate').val(),
+    })
+      .then(stream => {
         $('#my-video')[0].srcObject = stream;
 
         if (existingCall !== null) {
@@ -83,19 +80,15 @@ $(function() {
           step3(call);
         }
         localStream = stream;
-      },
-      error => {
-        console.log(error);
-      },
-      () => {
-        alert('ScreenShareを終了しました');
-      }
-    );
+      })
+      .catch(error => {
+          console.log(error);
+      });
   });
 
   // End screenshare
   $('#stop-screen').on('click', () => {
-    ss.stopScreenShare();
+    ss.stop();
     localStream.getTracks().forEach(track => track.stop());
   });
 
@@ -162,21 +155,5 @@ $(function() {
     $('#their-id').text(call.peer);
     $('#step1, #step2').hide();
     $('#step3').show();
-  }
-
-  function _getBrowserName() {
-    const ua = navigator.userAgent.toLowerCase();
-
-    // Firefox
-    if (ua.indexOf('firefox') !== -1) {
-      return 'firefox';
-    }
-
-    // Chrome
-    if (ua.indexOf('chrome') !== -1 && ua.indexOf('edge') === -1) {
-      return 'chrome';
-    }
-
-    return 'N/A';
   }
 });
