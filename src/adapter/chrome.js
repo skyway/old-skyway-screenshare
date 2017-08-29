@@ -87,13 +87,13 @@ class ChromeAdapter {
   }
 
   /**
-   * Returns whether screen sharing is available or NOT.
+   * Convert from passed user options to MediaStreamConstraints.
    * @param {Object} params - Options for getUserMedia constraints.
    * @param {number} [params.width] - Constraints for width.
    * @param {number} [params.height] - Constraints for height.
    * @param {number} [params.frameRate] - Constraints for frameRate.
-   * @param {string} streamId - Constraints for chromeMediaSourceId by extension.
-   * @return {MediaStreamConstraints} - Screen sharing is available or NOT.
+   * @param {string} streamId - Constraints for chromeMediaSourceId gotten from extension.
+   * @return {MediaStreamConstraints} - Constraints for getUserMedia.
    * @private
    */
   _paramsToConstraints(params, streamId) {

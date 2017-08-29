@@ -56,13 +56,13 @@ class FirefoxAdapter {
   }
 
   /**
-   * Returns whether screen sharing is available or NOT.
+   * Convert from passed user options to MediaStreamConstraints.
    * @param {Object} params - Options for getUserMedia constraints.
    * @param {number} [params.width] - Constraints for width.
    * @param {number} [params.height] - Constraints for height.
    * @param {number} [params.frameRate] - Constraints for frameRate.
    * @param {string} [params.mediaSource] - Constraints for mediaSource.
-   * @return {MediaStreamConstraints} - Screen sharing is available or NOT.
+   * @return {MediaStreamConstraints} - Constraints for getUserMedia.
    * @private
    */
   _paramsToConstraints(params) {
