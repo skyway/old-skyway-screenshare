@@ -2,7 +2,7 @@
 /**
  * SkyWay Screenshare Sample App
  * @author NTT Communications(skyway@ntt.com)
- * @link https://github.com/nttcom/SkyWay-ScreenShare
+ * @link https://github.com/nttcom/ECLRTC-ScreenShare
  * @license MIT License
  */
 
@@ -61,7 +61,7 @@ $(function() {
   // Start screenshare
   $('#start-screen').on('click', () => {
     if (ss.isScreenShareAvailable() === false) {
-      alert('スクリーンシェアが利用できません。Chromeの場合は、拡張をインストールしてください。');
+      alert('Screen Share cannot be used. Please install the Chrome extension.');
       return;
     }
 

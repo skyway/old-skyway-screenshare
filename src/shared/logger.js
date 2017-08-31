@@ -16,7 +16,7 @@ class Logger {
    */
   log(...message) {
     if (this._enable) {
-      console.log('ECLWebRTC-ScreenShare: ', ...message);
+      console.log('SkyWay-ScreenShare: ', ...message);
     }
   }
 }
