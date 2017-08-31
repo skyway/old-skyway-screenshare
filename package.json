@@ -1,7 +1,7 @@
 {
-  "name": "ECLRTC-ScreenShare",
+  "name": "SkyWay-ScreenShare",
   "version": "1.0.0",
-  "description": "ScreenShare library for ECL WebRTC",
+  "description": "ScreenShare library for SkyWay",
   "main": "dist/screenshare.js",
   "module": "src/index.js",
   "scripts": {

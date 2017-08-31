@@ -1,4 +1,4 @@
-# ECLWebRTC ScreenShare Library
+# SkyWay ScreenShare Library
 
 This is a library for easy implementation of screen sharing in WebRTC applications.
 This repository includes source code for the Chrome extension.
@@ -168,7 +168,7 @@ window.addEventListner('message', function(ev) {
 
 ## Sample
 
-### ECLWebRTC ScreenShare Sample App
+### SkyWay ScreenShare Sample App
 
 https://example.webrtc.ecl.ntt.com/screenshare/index.html
 

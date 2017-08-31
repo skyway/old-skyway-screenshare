@@ -79,7 +79,7 @@ class ChromeAdapter {
    * @return {boolean} - Screen sharing is available or NOT.
    */
   isScreenShareAvailable() {
-    if ('__eclWebRTCScreenShareExtensionAvailable__' in window) {
+    if ('__skywayWebRTCScreenShareExtensionAvailable__' in window) {
       return true;
     }
 

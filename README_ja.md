@@ -1,4 +1,4 @@
-# ECLWebRTC ScreenShare Library
+# SkyWay ScreenShare Library
 
 WebRTCのWebアプリケーションでスクリーンシェア機能を簡単に実装できるライブラリです。
 Chrome向けのextension用ソースコードも含まれています。
@@ -74,7 +74,7 @@ Chrome向けのextension用ソースコードも含まれています。
 |matches|extensionを利用するサイトのドメインを指定して下さい。<BR>ドメイン指定には `*`（ワイルドカード）が利用可能です。<BR>例：`"matches": ["https://*.webrtc.ecl.ntt.com/*"]`|
 
 
-ECLWebRTC-ScreenShareディレクトリに入り、Chrome extension用のビルドスクリプトを実行します。
+ECLRTC-ScreenShareディレクトリに入り、Chrome extension用のビルドスクリプトを実行します。
 ```
 npm install && npm run build:ext
 ```

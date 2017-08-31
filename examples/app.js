@@ -2,7 +2,7 @@
 /**
  * SkyWay Screenshare Sample App
  * @author NTT Communications(skyway@ntt.com)
- * @link https://github.com/nttcom/SkyWay-ScreenShare
+ * @link https://github.com/nttcom/ECLRTC-ScreenShare
  * @license MIT License
  */
 
