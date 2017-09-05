@@ -171,7 +171,7 @@ window.addEventListner('message', function(ev) {
 
 https://example.webrtc.ecl.ntt.com/screenshare/index.html
 
-  - [Install the Chrome extension](https://chrome.google.com/webstore/detail/ecl-webrtc-screenshare-sa/cneamhdlolejolecponnegbhmmpiochd)
+  - [Install the Chrome extension](https://chrome.google.com/webstore/detail/skyway-screenshare-sample/gjkihkcdicimhkhmnopjgpohogiggbao)
 
 ## Contributing
 
