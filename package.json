@@ -1,5 +1,5 @@
 {
-  "name": "SkyWay-ScreenShare",
+  "name": "skyway-screenshare",
   "version": "1.0.0",
   "description": "ScreenShare library for SkyWay",
   "main": "dist/screenshare.js",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nttcom-webcore/ECLRTC-ScreenShare.git"
+    "url": "git+https://github.com/skyway/skyway-screenshare.git"
   },
   "keywords": [],
   "author": "NTT Communications Corp.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nttcom-webcore/ECLRTC-ScreenShare/issues"
+    "url": "https://github.com/skyway/skyway-screenshare/issues"
   },
-  "homepage": "https://github.com/nttcom-webcore/ECLRTC-ScreenShare#readme",
+  "homepage": "https://github.com/skyway/skyway-screenshare#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",

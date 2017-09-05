@@ -16,14 +16,14 @@ This repository includes source code for the Chrome extension.
 
 * Building it yourself
 
-	Clone a copy of the ECLRTC-ScreenShare git repo:
+	Clone a copy of the skyway-screenshare git repo:
 	```
-	git clone git@github.com/nttcom/ECLRTC-ScreenShare.git
+	git clone git@github.com:skyway/skyway-screenshare.git
 	```
 
-	Enter the ECLRTC-ScreenShare directory and run the build script of JavaScript library:
+	Enter the skyway-screenshare directory and run the build script of JavaScript library:
 	```
-	cd ECLRTC-ScreenShare && npm install && npm run build:lib
+	cd skyway-screenshare && npm install && npm run build:lib
 	```
 
 	Use the generated libraries:

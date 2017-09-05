@@ -17,12 +17,12 @@ Chrome向けのextension用ソースコードも含まれています。
 
 	ライブラリをcloneします。
 	```
-	git clone git@github.com/nttcom/ECLRTC-ScreenShare.git
+	git clone git@github.com:skyway/skyway-screenshare.git
 	```
 
 	ライブラリをビルドします。
 	```
-	cd ECLRTC-ScreenShare && npm install && npm run build:lib
+	cd skyway-screenshare && npm install && npm run build:lib
 	```
 
 	生成されたライブラリを利用します。
