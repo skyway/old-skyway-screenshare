@@ -135,7 +135,7 @@ Firefox only, you can specify one of `window`, `application` or `screen` to `med
 
 ### stop
 
-- Stop tracks of stream gotten from `start()`
+- Stop tracks of stream obtained from `start()`
 
 ```javascript
 screenshare.stop();
