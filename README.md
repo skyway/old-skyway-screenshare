@@ -77,6 +77,7 @@ Essential modification items are as follows:
 
 Run the build script for the Chrome extension:
 ```
+mkdir dist
 npm install && npm run build:ext
 ```
 
