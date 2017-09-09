@@ -75,7 +75,9 @@ Chrome向けのextension用ソースコードも含まれています。
 
 
 ECLRTC-ScreenShareディレクトリに入り、Chrome extension用のビルドスクリプトを実行します。
+
 ```
+mkdir dist
 npm install && npm run build:ext
 ```
 
