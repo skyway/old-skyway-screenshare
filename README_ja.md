@@ -71,7 +71,7 @@ Chrome向けのextension用ソースコードも含まれています。
 |version|extensionのversion番号を指定して下さい。|
 |description|extensionのdescriptionを指定して下さい。|
 |icons|extensionのiconファイル名（３種類）を指定して下さい。<BR>iconファイルは `./chrome-extension/` に配置して下さい。<BR>|
-|matches|extensionを利用するサイトのドメインを指定して下さい。<BR>ドメイン指定には `*`（ワイルドカード）が利用可能です。<BR>例：`"matches": ["https://*.webrtc.ecl.ntt.com/*"]`|
+|matches|extensionを利用するサイトのドメインを指定して下さい。<BR>ドメイン指定には `*`（ワイルドカード）が利用可能です。<BR>ドメインは完全一致する必要があるため末尾に `*`をつけることを推奨します。<BR>例：`"matches": ["https://*.webrtc.ecl.ntt.com/*"]`|
 
 
 ECLRTC-ScreenShareディレクトリに入り、Chrome extension用のビルドスクリプトを実行します。
