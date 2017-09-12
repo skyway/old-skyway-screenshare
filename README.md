@@ -72,7 +72,7 @@ Essential modification items are as follows:
 |version|Your extension version number here.|
 |description|Your extension description here.|
 |icons|Your extension icon files name here.<BR>Icon files should be located here <`chrome-extension/`>.<BR>|
-|matches|The site urls that will use this extension. <BR>Wildcards are accepted.<BR>Ex: `"matches": ["https://*.webrtc.ecl.ntt.com/*"]`|
+|matches|The site urls that will use this extension. <BR>Wildcards are accepted.<BR>It is recommended to add `*` at the end of urls because the match type is exact match.<BR>Ex: `"matches": ["https://*.webrtc.ecl.ntt.com/*"]`|
 
 
 Run the build script for the Chrome extension:
