@@ -23,7 +23,7 @@ document.head.appendChild(elt);
 // by handling this event, you can do automatic start of ScreenShare feature.
 //
 // front side code snipet:
-// window.addEventListner('message', function(ev) {
+// window.addEventListener('message', function(ev) {
 //   if(ev.data.type === "ScreenShareInjected") {
 //     console.log('screen share extension is injected, get ready to use');
 //     startScreenShare();
