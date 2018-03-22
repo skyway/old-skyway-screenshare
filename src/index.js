@@ -4,6 +4,7 @@ import {
 } from './shared/util';
 import ChromeAdapter from './adapter/chrome';
 import FirefoxAdapter from './adapter/firefox';
+import UnknownAdapter from './adapter/unknown';
 
 /**
  * Factory class for ScreenShare.
@@ -25,8 +26,7 @@ class ScreenShare {
       case 'chrome':
         return new ChromeAdapter(logger);
       default:
-        this._logger.log('This browser does not support screen share.');
-        return null;
+        return new UnknownAdapter(logger);
     }
   }
 }
