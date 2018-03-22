@@ -13,11 +13,7 @@ class UnknownAdapter {
 
   /**
    * Start screen share.
-   * For Chrome, you can specify mediaSource to share via dialog called by Extension.
-   * @param {Object} [params] - Options for getUserMedia constraints.
-   * @param {number} [params.width] - Constraints for width.
-   * @param {number} [params.height] - Constraints for height.
-   * @param {number} [params.frameRate] - Constraints for frameRate.
+   * Just rejects for not supported browser.
    * @return {Promise<MediaStream>} - Promise resolved with MediaStream instance.
    */
   start() {
