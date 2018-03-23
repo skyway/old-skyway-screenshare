@@ -14,7 +14,7 @@ class UnknownAdapter {
   /**
    * Start screen share.
    * Just rejects for not supported browser.
-   * @return {Promise<MediaStream>} - Promise resolved with MediaStream instance.
+   * @return {Promise<MediaStream>} - Always returns rejected Promise with error.
    */
   start() {
     const err = new Error('This browser does not support screen share.');
