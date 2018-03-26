@@ -1,6 +1,6 @@
 {
   "name": "skyway-screenshare",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ScreenShare library for SkyWay",
   "main": "dist/screenshare.js",
   "module": "src/index.js",
