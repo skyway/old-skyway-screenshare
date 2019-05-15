@@ -1,3 +1,14 @@
+# ⚠️ Deprecated
+
+This project is no longer maintained.
+
+Since Chrome 72 and Firefox 66, `navigator.mediaDevices.getDisplayMedia()` is available.
+You can get the screen stream through this API without any dependencies.
+
+> [Screen Capture](https://w3c.github.io/mediacapture-screen-share/)
+
+- - -
+
 # SkyWay ScreenShare Library
 
 This is a library for easy implementation of screen sharing in WebRTC applications.
